@@ -4,11 +4,11 @@ import openai_API from './OpenAI-API.ts';
 const openai = openai_API;
 
 //main query
-export default async function main() {
+export default async function main(user_input: string, model_type: string) {
   //main query to the llm
   const stream = await openai.chat.completions.create({
-    model: 'llama3',
-    messages: [{ role: 'user', content: 'Which llm are you? Who programmed you?' }],
+    model: model_type,
+    messages: [{ role: 'user', content: user_input }],
     stream: true,
   });
 

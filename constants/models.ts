@@ -12,13 +12,13 @@ export const models = [
     disabled: false,
   },
   {
-    name: 'GPT-4o',
-    value: 99,
+    name: 'gpt-4o',
+    value: 100,
     disabled: false,
   },
   {
-    name: 'GPT-3.5 Turbo',
-    value: 100,
+    name: 'gpt-3.5-turbo',
+    value: 101,
     disabled: false,
   },
   {

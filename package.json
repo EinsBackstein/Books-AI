@@ -14,6 +14,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.14.10",
+    "@types/node-fetch": "^2.6.11",
     "@typescript-eslint/eslint-plugin": "^7.15.0",
     "@typescript-eslint/parser": "^7.15.0",
     "eslint": "^8.57.0",
@@ -28,6 +29,8 @@
     "figlet": "^1.7.0",
     "gradient-string": "^2.0.2",
     "inquirer": "^10.0.0",
+    "node-fetch": "^3.3.2",
+    "ollama": "^0.5.2",
     "openai": "^4.52.3"
   },
   "type": "module"

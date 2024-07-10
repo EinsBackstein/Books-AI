@@ -8,6 +8,7 @@ import main from '../main.ts';
 import userInput from '../terminal/input.ts';
 import fs from 'fs';
 import { models } from '../constants/models.ts';
+import reader from '../vector-embedding/pdfReader.ts';
 
 export const call = () => {
   userInput().then(() => {

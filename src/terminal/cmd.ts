@@ -1,11 +1,7 @@
 import renderAscii from './ascii.ts';
-import userInput from './input.ts';
-import userInput_ from '../showcase.ts';
 import fs from 'fs';
-import reader, { callReader } from '../vector-embedding/pdfReader.ts';
 import embedding from '../vector-embedding/embedding.ts';
-import main from '../main.ts';
-import call from '../callLLM.ts';
+import { call, userInput_, callReader } from '../lib/helpers.ts';
 
 let userSelection;
 
@@ -19,7 +15,8 @@ const run = async () => {
   } else if (userSelection.usage_selection === 'Embedding') {
     await embedding();
   } else {
-    call();
+    await call();
+    
   }
 };
 

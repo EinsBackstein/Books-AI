@@ -16,13 +16,3 @@ export default async function reader() {
 
   return [{ docs }, { splitDocs }];
 }
-
-const callReader = () => {
-  reader().then(([docs, splitDocs]) => {
-    docs.docs.forEach((doc) => {
-      console.log(doc.pageContent);
-    });
-  });
-};
-
-export { callReader };

@@ -1,4 +1,4 @@
-import { models } from '../constants/models.ts';
+import { checkModel } from './lib/helpers.ts';
 import { local, cloud } from './openAI-API.ts';
 
 //main query
@@ -26,20 +26,4 @@ export default async function main(user_input: string, model_type: number) {
   await console.log(response);
 }
 
-const checkModel = (model: number) => {
-  const model_type = {
-    remote: false,
-    name: '',
-  };
 
-  if (model >= 100) {
-    model_type.remote = true;
-  }
-
-  if (models.find((m) => m.value === model) === undefined) {
-    throw new Error('Model not found');
-  }
-
-  model_type.name = models.find((m) => m.value === model).name;
-  return model_type;
-};

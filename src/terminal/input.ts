@@ -5,7 +5,7 @@ import chalk from 'chalk';
 import inquirer from 'inquirer';
 import seperator from 'inquirer';
 import fs from 'fs';
-import { models } from '../../constants/models.ts';
+import { models } from '../constants/models.ts';
 
 const userInput = async () => {
   await inquirer

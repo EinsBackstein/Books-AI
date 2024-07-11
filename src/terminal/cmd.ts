@@ -1,7 +1,8 @@
 import renderAscii from './ascii.ts';
 import fs from 'fs';
 import embedding from '../vector-embedding/embedding.ts';
-import { call, userInput_, callReader } from '../lib/helpers.ts';
+import { call, userInput_, callReader, callRAG } from '../lib/helpers.ts';
+
 
 let userSelection;
 
@@ -14,9 +15,10 @@ const run = async () => {
     await callReader();
   } else if (userSelection.usage_selection === 'Embedding') {
     await embedding();
-  } else {
+  } else if(userSelection.usage_selection === 'RAG'){
+    await callRAG();
+  }else{
     await call();
-    
   }
 };
 

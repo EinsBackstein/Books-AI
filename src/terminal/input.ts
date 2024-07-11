@@ -11,15 +11,15 @@ const userInput = async () => {
   await inquirer
     .prompt([
       {
-        name: 'user_input',
-        type: 'input',
-        message: chalk.cyan('Please enter your message'),
-      },
-      {
         name: 'model_type',
         type: 'select',
         message: chalk.blue('Please select the model type'),
         choices: models,
+      },
+      {
+        name: 'user_input',
+        type: 'input',
+        message: chalk.cyan('Please enter your message'),
       },
     ])
     .then((answers) => {

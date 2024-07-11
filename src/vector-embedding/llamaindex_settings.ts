@@ -16,7 +16,7 @@ export const newTextQaPrompt: TextQaPrompt = ({ context, query }) => {
 ---------------------
 ${context}
 ---------------------
-Given the context information and not prior knowledge, answer the query.
+Given the context information and not prior knowledge, answer the query. Do not use any external sources.
 Answer the query in german language.
 Query: ${query}
 Answer:`;

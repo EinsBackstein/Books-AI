@@ -1,61 +1,28 @@
-// import fs from 'fs/promises';
-// import { Document, VectorStoreIndex } from 'llamaindex';
-// import reader from './src/vector-embedding/pdfReader.ts';
-// import { Ollama, Settings } from 'llamaindex';
-
-// const ollama = new Ollama({
-//   model: 'llama3',
-//   options: {
-//     temperature: 0.5,
-//   },
-// });
-
-// // Use Ollama LLM and Embed Model
-// Settings.llm = ollama;
-// Settings.embedModel = ollama;
-
-// async function main() {
-//   // Load essay from abramov.txt in Node
-//   const essay = await reader();
-
-//   const arr = [];
-//   essay[0].docs.map((doc) => arr.push(doc.pageContent));
-
-//   const string = arr.join(' ');
-
-//   // Create Document object with essay
-//   const document = new Document({ text: string });
-
-//   // Split text and create embeddings. Store them in a VectorStoreIndex
-//   const index = await VectorStoreIndex.fromDocuments([document]);
-
-//   const retriever = index.asRetriever();
-//   retriever.similarityTopK = 3;
-
-//   // Fetch nodes!
-//   const nodesWithScore = await retriever.retrieve({
-//     query: '§14 Bausparkassengesetz',
-//   });
-//   fs.writeFile('nodesWithScore.json', JSON.stringify(nodesWithScore, null, 2));
-//   // Query the index
-//   const queryEngine = index.asQueryEngine();
-//   console.log('QUERY: ', queryEngine);
-//   const response = await queryEngine.query({
-//     query: 'Recite §14 of the "Bausparkassengesetz". Explain in simple terms.',
-//   });
-
-//   // Output response
-//   console.log(response.toString());
-// }
-
-// main();
-
-import { Ollama, OllamaEmbedding, Settings } from 'llamaindex';
-import reader from './src/vector-embedding/pdfReader.ts';
+import {
+  ChromaVectorStore,
+  CompactAndRefine,
+  Ollama,
+  OllamaEmbedding,
+  ResponseSynthesizer,
+  Settings,
+  storageContextFromDefaults,
+} from 'llamaindex';
+import { newTextQaPrompt } from './src/vector-embedding/llamaindex_settings.ts';
 import { Document, VectorStoreIndex } from 'llamaindex';
 
-Settings.embedModel = new OllamaEmbedding({ model: 'nomic-embed-text' });
+import dataset from './src/vector-embedding/site+metadata.ts';
 
+const collectionName = 'testCollection';
+
+const chromaVS = new ChromaVectorStore({
+  collectionName,
+});
+
+const ctx = await storageContextFromDefaults({
+  vectorStore: chromaVS,
+});
+
+Settings.embedModel = new OllamaEmbedding({ model: 'nomic-embed-text' });
 
 const ollama = new Ollama({
   model: 'llama3',
@@ -64,25 +31,30 @@ const ollama = new Ollama({
 // Use Ollama LLM and Embed Model
 Settings.llm = ollama;
 
-const essay = await reader();
-const arr = [];
-essay[0].docs.map((doc) => arr.push(doc.pageContent));
-
-const string = arr.join(' ');
-
-const metadata = [];
-
-essay[0].docs.map((doc) => {
-  metadata.push(doc.metadata);
+const responseSynthesizer = new ResponseSynthesizer({
+  responseBuilder: new CompactAndRefine(undefined, newTextQaPrompt),
 });
 
-const document = new Document({ text: string, metadata: metadata});
+const documents = [];
 
-const index = await VectorStoreIndex.fromDocuments([document]);
+for (let i = 0; i < dataset.dataset.length; i++) {
+  documents.push(
+    new Document({
+      text: dataset.dataset[i][0].text,
+      metadata: dataset.dataset[i][0].metadata.pdf.info,
+    })
+  );
+}
 
-const queryEngine = index.asQueryEngine();
+// console.log(documents[0].metadata);
 
-const query = 'Which sources are mentioned in NWTK Static Routing?';
+const index = await VectorStoreIndex.fromDocuments(documents, {
+  storageContext: ctx,
+});
+
+const queryEngine = index.asQueryEngine({ responseSynthesizer });
+
+const query = 'Grundstückspreis in Glanegg?';
 
 const results = await queryEngine.query({
   query,

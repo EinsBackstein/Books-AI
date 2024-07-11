@@ -9,12 +9,22 @@ import userInput from '../terminal/input.ts';
 import fs from 'fs';
 import { models } from '../constants/models.ts';
 import reader from '../vector-embedding/pdfReader.ts';
+import userInput__ from '../terminal/rag.ts';
+import RAG from '../vector-embedding/RAG-Call.ts';
 
 export const call = () => {
   userInput().then(() => {
     const input = JSON.parse(fs.readFileSync('json/input.json', 'utf8'));
     // console.log(input);
     main(input.user_input, input.model_type);
+  });
+};
+
+export const callRAG = () => {
+  userInput__().then(() => {
+    const input = JSON.parse(fs.readFileSync('json/RAG.json', 'utf8'));
+    // console.log(input);
+    RAG(input.model_type, input.embedder_type, input.user_input);
   });
 };
 
@@ -25,7 +35,7 @@ export const userInput_ = async () => {
         name: 'usage_selection',
         type: 'select',
         message: chalk.yellow('Bitte Verwendungszweck auswählen'),
-        choices: ['PDF-Reader', 'Embedding', 'LLM-Connection'],
+        choices: ['PDF-Reader', 'Embedding', 'LLM-Connection', 'RAG'],
       },
     ])
     .then((answers) => {
@@ -39,7 +49,7 @@ export const userInput_ = async () => {
 export const callReader = () => {
   reader().then(([docs, splitDocs]) => {
     docs.docs.forEach((doc) => {
-      console.log(doc.metadata.loc.pageNumber, doc.metadata.pdf.info.Title);
+      console.log(doc.pageContent);
     });
   });
 };

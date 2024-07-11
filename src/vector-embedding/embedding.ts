@@ -3,7 +3,7 @@ import reader from './pdfReader.ts';
 
 export default async function embedding() {
   const embeddings = new OllamaEmbeddings({
-    model: 'nomic-embed-text', // default value
+    model: 'llama3',
     baseUrl: 'http://localhost:11434', // default value
     requestOptions: {
       useMMap: true,

@@ -25,11 +25,7 @@ export const userInput_ = async () => {
         name: 'usage_selection',
         type: 'select',
         message: chalk.yellow('Bitte Verwendungszweck auswählen'),
-        choices: [
-          'PDF-Reader',
-          'Embedding',
-          'LLM-Connection',
-        ],
+        choices: ['PDF-Reader', 'Embedding', 'LLM-Connection'],
       },
     ])
     .then((answers) => {
@@ -43,7 +39,7 @@ export const userInput_ = async () => {
 export const callReader = () => {
   reader().then(([docs, splitDocs]) => {
     docs.docs.forEach((doc) => {
-      console.log(doc.pageContent);
+      console.log(doc.metadata.loc.pageNumber, doc.metadata.pdf.info.Title);
     });
   });
 };

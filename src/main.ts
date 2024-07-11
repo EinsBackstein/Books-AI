@@ -25,5 +25,3 @@ export default async function main(user_input: string, model_type: number) {
 
   await console.log(response);
 }
-
-

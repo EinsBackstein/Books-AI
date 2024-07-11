@@ -1,0 +1,95 @@
+[
+  {
+    "node": {
+      "id_": "8686a915-9bb2-4d33-ba3e-e4cfa4d0f5fc",
+      "metadata": {},
+      "excludedEmbedMetadataKeys": [],
+      "excludedLlmMetadataKeys": [],
+      "relationships": {
+        "SOURCE": {
+          "nodeId": "ce05fd9d-d925-4754-84e7-21cc0d04bb26",
+          "metadata": {},
+          "hash": "c5kjOV9VaQqHrDpGT5a/a+O9s45fi4jXEomwcVrNM24="
+        },
+        "PREVIOUS": {
+          "nodeId": "979a7b92-b6c6-4599-8cde-b6150fd5cf32",
+          "metadata": {},
+          "hash": "Kc88OwYGk8E1DSi/PloDTc6MVmC+r58Ozdkv6Fqp6Dg="
+        },
+        "NEXT": {
+          "nodeId": "ab20c2a3-2b35-4b19-9138-4e95712b77a4",
+          "metadata": {},
+          "hash": "fjkfdlAhGgFMVnApEhSUaiv7iRjIawwR51fUozIxB/s="
+        }
+      },
+      "text": "Forschung\n§ 256.(1) Ebenso darf ein Vorsorgebevollmächtigter oder Erwachsenenvertreter einer medizinischen\nForschung, die mit einer Beeinträchtigung der körperlichen Unversehrtheit oder der Persönlichkeit der\nvertretenen nicht entscheidungsfähigen Person verbunden ist, nicht zustimmen, es sei denn, dass diese für\nderen Gesundheit oder Wohlbefinden von unmittelbarem Nutzen sein kann. Die Zustimmung bedarf der\ngerichtlichen Genehmigung, außer es liegt eine befürwortende Stellungnahme einer für die jeweilige\nKrankenanstalt eingerichteten Ethikkommission vor. (2)  Gibt  eine  nicht  entscheidungsfähige  Person  ihrem  Vorsorgebevollmächtigten  oder\nErwachsenenvertreter oder dem Arzt gegenüber zu erkennen, dass sie die Forschung oder deren\nFortsetzung ablehnt, so hat diese zu unterbleiben, es sei denn, das Wohl der vertretenen Person wäre sonst\nerheblich gefährdet. Die Zustimmung des gesetzlichen Vertreters bedarf diesfalls auch bei Vorliegen\neiner befürwortenden Stellungnahme einer Ethikkommission der gerichtlichen Genehmigung. Änderung des Wohnortes\n§ 257.(1)  Über  eine  Änderung des Wohnortes kann  eine  volljährige  Person,  soweit  sie\nentscheidungsfähig ist, nur selbst entscheiden. (2) Ist sie nicht entscheidungsfähig, so hat der Vorsorgebevollmächtigte oder Erwachsenenvertreter,\ndessen Wirkungsbereich diese Angelegenheit umfasst, die Entscheidung zu treffen, sofern dies zur\nWahrung des Wohles der vertretenen Person erforderlich ist. (3) Soll der Wohnort der vertretenen Person dauerhaft geändert werden, so bedarf es zuvor der\ngerichtlichen Genehmigung. Bis zum Vorliegen der gerichtlichen Entscheidung kann der Wohnort der\nvertretenen Person geändert werden, sofern eine Rückkehr möglich ist. (4) Abs. 3 gilt für den Vorsorgebevollmächtigten sinngemäß, sofern der Wohnort der vertretenen\nPerson dauerhaft ins Ausland verlegt werden soll. V. Vermögenssorge\n§ 258.(1) Ist ein Erwachsenenvertreter mit der Verwaltung des Vermögens oder des Einkommens\nder vertretenen Person betraut, so hat er mit dem Einkommen und dem Vermögen ihre den persönlichen\nLebensverhältnissen angemessenen Bedürfnisse zu befriedigen. (2) Bei der Erfüllung der Verpflichtung nach Abs. 1 hat der Erwachsenenvertreter auch dafür zu\nsorgen, dass der vertretenen Person die notwendigen finanziellen Mittel für Rechtsgeschäfte des täglichen\nLebens  zur  Verfügung  stehen,  soweit  ihr  Wohl  dadurch  nicht  gefährdet  ist. Dafür  hat  der\nErwachsenenvertreter der vertretenen Person etwa das notwendige Bargeld zu überlassen oder den\nnotwendigen Zugriff auf Zahlungskonten zu gewähren. (3) Für die Anlegung von Bargeld und von Geld auf Zahlungskonten der vertretenen Person, die\nVeräußerung von beweglichem Vermögen und unbeweglichem Gut sowie die Entgegennahme von\nZahlungen gelten die §§ 215 bis 224 sinngemäß. Bundesrecht konsolidiert\nwww.ris.bka.gv.atSeite 53 von 189\n(4) Vertretungshandlungen eines Erwachsenenvertreters in Vermögensangelegenheiten bedürfen zu\nihrer Rechtswirksamkeit der Genehmigung des Gerichtes, sofern die Vermögensangelegenheit nicht zum\nordentlichen Wirtschaftsbetrieb gehört. § 167 Abs. 3 gilt sinngemäß.",
+      "textTemplate": "",
+      "metadataSeparator": "\n",
+      "type": "TEXT",
+      "hash": "OodN4GRk9GmFVHN69BNZKlBYALNPCCT1637wh2FoxPU="
+    },
+    "score": 0.5307615082176503
+  },
+  {
+    "node": {
+      "id_": "cd19a2a7-5437-41bd-8c5c-a5a76b40c292",
+      "metadata": {},
+      "excludedEmbedMetadataKeys": [],
+      "excludedLlmMetadataKeys": [],
+      "relationships": {
+        "SOURCE": {
+          "nodeId": "ce05fd9d-d925-4754-84e7-21cc0d04bb26",
+          "metadata": {},
+          "hash": "c5kjOV9VaQqHrDpGT5a/a+O9s45fi4jXEomwcVrNM24="
+        },
+        "PREVIOUS": {
+          "nodeId": "5756e93c-ba48-4769-a142-768b15f342b5",
+          "metadata": {},
+          "hash": "LvTPvSvXW/6PapiJjkErgJ3P1GAOy9qXmogvHOSDY9k="
+        },
+        "NEXT": {
+          "nodeId": "23def4fd-6ee5-4d5b-9817-b74dbdcb405a",
+          "metadata": {},
+          "hash": "8HSdy2qG4pjjqREBb5yxDaZ00vHwqrbvh8ktQLdXjzI="
+        }
+      },
+      "text": "Für die schon bewirkten\nLeistungen, deren Entgelt noch nicht fällig ist, steht dem Dienstnehmer ein Anspruch auf den\nentsprechenden Teil des Entgelts nur insoweit zu, als sie nicht durch die vorzeitige Auflösung des\nDienstverhältnisses für den Dienstgeber ihren Wert ganz oder zum größten Teil eingebüßt haben. § 1162b.Wenn der Dienstgeber den Dienstnehmer ohne wichtigen Grund vorzeitig entläßt oder\nwenn ihn ein Verschulden an dem vorzeitigen Austritte des Dienstnehmers trifft, behält dieser,\nunbeschadet weitergehenden Schadenersatzes, seine vertragsgemäßen Ansprüche auf das Entgelt für den\nZeitraum, der bis zur Beendigung des Dienstverhältnisses durch Ablauf der Vertragszeit oder durch\nordnungsmäßige Kündigung hätte verstreichen müssen, unter Anrechnung dessen, was er infolge des\nUnterbleibens der Dienstleistung erspart oder durch anderweitige Verwendung erworben oder zu\nerwerben absichtlich versäumt hat. Soweit jedoch der oben genannte Zeitraum drei Monate nicht\nübersteigt, kann der Dienstnehmer das ganze für diese Zeit gebührende Entgelt ohne Abzug sofort\nfordern. § 1162c.Trifft beide Teile ein Verschulden an der vorzeitigen Lösung des Dienstverhältnisses, so\nhat der Richter nach freiem Ermessen zu entscheiden, ob und in welcher Höhe ein Ersatz gebührt. § 1162d.Ansprüche wegen vorzeitigen Austrittes oder vorzeitiger Entlassung im Sinne der §§ 1162a\nund 1162b müssen bei sonstigem Ausschlusse binnen sechs Monaten nach Ablauf des Tages, an dem sie\nerhoben werden konnten, gerichtlich geltend gemacht werden. Zeugnis. § 1163.(1) Bei Beendigung des Dienstverhältnisses ist dem Dienstnehmer auf sein Verlangen ein\nschriftliches Zeugnis über die Dauer und Art der Dienstleistung auszustellen. Verlangt der Dienstnehmer\nwährend der Dauer des Dienstverhältnisses ein Zeugnis, so ist ihm ein solches auf seine Kosten\nauszustellen. Eintragungen und Anmerkungen im Zeugnisse, durch die dem Dienstnehmer die Erlangung\neiner neuen Stellung erschwert wird, sind unzulässig. (2) Zeugnisse des Dienstnehmers, die sich in Verwahrung des Dienstgebers befinden, sind dem\nDienstnehmer auf Verlangen jederzeit auszufolgen. Zwingende Vorschriften\n§ 1164.(1) Die Berechtigungen des Dienstnehmers, die sich aus den Bestimmungen der §§ 1154\nAbs. 3, § 1154b, 1156 bis 1159b, 1160 und 1162a bis 1163 ergeben, können durch den Dienstvertrag oder\ndurch Normen der kollektiven Rechtsgestaltung nicht aufgehoben oder beschränkt werden. (2) Die §§ 1154b, 1156 und 1164 in der Fassung des Bundesgesetzes BGBl. I Nr. 44/2000 sind auf\nDienstverhinderungen anzuwenden, die in nach dem 31. Dezember 2000 begonnenen Arbeitsjahren\neingetreten sind. (3) Die verlängerte Anspruchsdauer nach § 1154b Abs. 1 in der Fassung des Bundesgesetzes BGBl. I\nNr. 44/2000 bewirkt keine Verlängerung einer in Normen der kollektiven Rechtsgestaltung oder\nDienstverträgen vorgesehenen längeren Anspruchsdauer. Sehen Normen der kollektiven Rechtsgestaltung\noder Dienstverträge einen zusätzlichen Anspruch im Anschluss an den Anspruch nach § 1154b Abs. 1\nvor, wird die Gesamtdauer der Ansprüche nicht verlängert.",
+      "textTemplate": "",
+      "metadataSeparator": "\n",
+      "type": "TEXT",
+      "hash": "kk88w2dCsZsvOBpG1Dr3UjYfrh+xh7ePofkFLL1/zoo="
+    },
+    "score": 0.5188790279189005
+  },
+  {
+    "node": {
+      "id_": "68140efe-8850-4a16-bcf0-57f8e8c965c3",
+      "metadata": {},
+      "excludedEmbedMetadataKeys": [],
+      "excludedLlmMetadataKeys": [],
+      "relationships": {
+        "SOURCE": {
+          "nodeId": "ce05fd9d-d925-4754-84e7-21cc0d04bb26",
+          "metadata": {},
+          "hash": "c5kjOV9VaQqHrDpGT5a/a+O9s45fi4jXEomwcVrNM24="
+        },
+        "PREVIOUS": {
+          "nodeId": "795f9cfb-1497-4de7-86c4-03195933056b",
+          "metadata": {},
+          "hash": "jMAW/Ww84H5Pz+FVv3d0IkKzTk1odeCnpeCng95TL9w="
+        },
+        "NEXT": {
+          "nodeId": "463d3287-4bac-4edd-afef-ae83697882d7",
+          "metadata": {},
+          "hash": "fB4wgUsYnRwemm2L5M5XDI8APK5+l5hoFTDaOPkrDa4="
+        }
+      },
+      "text": "Doch muß er binnen acht Tagen sich mit dem Eigenthümer abfinden, oder\nseine Klage vor den Richter bringen; widrigen Falls aber das gepfändete Vieh zurückstellen. § 1322.Das gepfändete Vieh muß auch zurückgestellet werden, wenn der Eigenthümer eine andere\nangemessene Sicherheit leistet. Arten des Schadenersatzes. § 1323.Um den Ersatz eines verursachten Schadens zu leisten, muß Alles in den vorigen Stand\nzurückversetzt, oder, wenn dieses nicht thunlich ist, der Schätzungswerth vergütet werden. Betrifft der\nErsatz nur den erlittenen Schaden, so wird er eigentlich eine Schadloshaltung; wofern er sich aber auch\nauf den entgangenen Gewinn und die Tilgung der verursachten Beleidigung erstreckt, volle Genugthuung\ngenannt. § 1324.In dem Falle eines aus böser Absicht oder aus einer auffallenden Sorglosigkeit verursachten\nSchadens ist der Beschädigte volle Genugthung(Anm.: richtig: Genugthuung); in den übrigen Fällen aber\nnur die eigentliche Schadloshaltung zu fordern berechtiget. Hiernach ist in den Fällen, wo im Gesetze der\nallgemeine Ausdruck: Ersatz, vorkommt, zu beurtheilen, welche Art des Ersatzes zu leisten sey. Insbesondere\n1) bey Verletzungen an dem Körper;\n§ 1325.Wer jemanden an seinem Körper verletzet, bestreitet die Heilungskosten des Verletzten;\nersetzet ihm den entgangenen, oder wenn der Beschädigte zum Erwerb unfähig wird, auch den künftig\nentgehenden Verdienst und bezahlt ihm auf Verlangen überdieß ein den erhobenen Umständen\nangemessenes Schmerzengeld. § 1326.Ist die verletzte Person durch die Mißhandlung verunstaltet worden; so muß, zumahl wenn\nsie weiblichen Geschlechtes ist, in so fern auf diesen Umstand Rücksicht genommen werden, als ihr\nbesseres Fortkommen dadurch verhindert werden kann. § 1327.Erfolgt aus einer körperlichen Verletzung der Tod, so müssen nicht nur alle Kosten, sondern\nauch den Hinterbliebenen, für deren Unterhalt der Getötete nach dem Gesetze zu sorgen hatte, das, was\nihnen dadurch entgangen ist, ersetzt werden. 1a. an der geschlechtlichen Selbstbestimmung\n§ 1328.Wer jemanden durch eine strafbare Handlung oder sonst durch Hinterlist, Drohung oder\nAusnutzung  eines  Abhängigkeits-  oder  Autoritätsverhältnisses  zur  Beiwohnung  oder  sonst  zu\ngeschlechtlichen Handlungen mißbraucht, hat ihm den erlittenen Schaden und den entgangenen Gewinn\nzu ersetzen sowie eine angemessene Entschädigung für die erlittene Beeinträchtigung zu leisten. Bundesrecht konsolidiert\nwww.ris.bka.gv.atSeite 160 von 189\n1b. am Recht auf Wahrung der Privatsphäre\n§ 1328a.(1) Wer rechtswidrig und schuldhaft in die Privatsphäre eines Menschen eingreift oder\nUmstände aus der Privatsphäre eines Menschen offenbart oder verwertet, hat ihm den dadurch\nentstandenen Schaden zu ersetzen. Bei erheblichen Verletzungen der Privatsphäre, etwa wenn Umstände\ndaraus in einer Weise verwertet werden, die geeignet ist, den Menschen in der Öffentlichkeit\nbloßzustellen, umfasst der Ersatzanspruch auch eine Entschädigung für die erlittene persönliche\nBeeinträchtigung. (2) Abs. 1 ist nicht anzuwenden, sofern eine Verletzung der Privatsphäre nach besonderen\nBestimmungen zu beurteilen ist.",
+      "textTemplate": "",
+      "metadataSeparator": "\n",
+      "type": "TEXT",
+      "hash": "yOqEOhGCuaFCZ007GOl5gtV1HUPEPu2fOhg9KsmMLCQ="
+    },
+    "score": 0.5173185072419832
+  }
+]

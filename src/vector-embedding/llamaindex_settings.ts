@@ -1,0 +1,27 @@
+import {
+  Ollama,
+  OllamaEmbedding,
+  Settings,
+  type TextQaPrompt,
+} from 'llamaindex';
+
+const settings = Settings;
+
+const model = 'llama3';
+const embeddingModel = 'nomic-embed-text';
+
+// Define a custom prompt
+export const newTextQaPrompt: TextQaPrompt = ({ context, query }) => {
+  return `Context information is below.
+---------------------
+${context}
+---------------------
+Given the context information and not prior knowledge, answer the query.
+Answer the query in german language.
+Query: ${query}
+Answer:`;
+};
+
+const setSettings = () => {};
+
+export default setSettings();

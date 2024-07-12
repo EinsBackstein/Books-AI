@@ -1,5 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-nocheck
+//test
 
 import chalk from 'chalk';
 import inquirer from 'inquirer';

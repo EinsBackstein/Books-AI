@@ -10,32 +10,35 @@ import { Document, VectorStoreIndex } from 'llamaindex';
 import * as readline from 'node:readline';
 import dataset from './site+metadata.ts';
 import chalk from 'chalk';
-import { Readline } from 'readline/promises';
 
 let RAG;
 
-export default RAG = async (llm, embedder, prompt: string) => {
+export default RAG = async (llm: number, embedder:number, prompt: string) => {
+  //* Settings
+  let model;
   if (llm === 1) {
-    llm = 'llama3';
+    model = 'llama3';
   } else if (llm === 2) {
-    llm = 'gemma2';
+    model = 'gemma2';
   }
 
+  let embedderModel;
   if (embedder === 1) {
-    embedder = 'nomic-embed-text';
+    embedderModel = 'nomic-embed-text';
   } else if (embedder === 2) {
-    embedder = 'llama3';
+    embedderModel = 'llama3';
   }
-
-  Settings.embedModel = new OllamaEmbedding({ model: embedder });
 
   const ollama = new Ollama({
-    model: llm,
+    model: model,
   });
-
+  
   // Use Ollama LLM and Embed Model
   Settings.llm = ollama;
+  Settings.embedModel = new OllamaEmbedding({ model: embedderModel });
 
+
+  //* Cosmetic
   const twirlTimer = (function () {
     const P = ['\\', '|', '/', '-'];
     let x = 0;
@@ -45,10 +48,12 @@ export default RAG = async (llm, embedder, prompt: string) => {
     }, 250);
   })();
 
+  //* Custom Prompt
   const responseSynthesizer = new ResponseSynthesizer({
     responseBuilder: new CompactAndRefine(undefined, newTextQaPrompt),
   });
 
+  //* Dataset creation
   const documents = [];
 
   for (let i = 0; i < dataset.dataset.length; i++) {
@@ -59,8 +64,8 @@ export default RAG = async (llm, embedder, prompt: string) => {
       })
     );
   }
-  // console.log(documents[0].text);
 
+  //* RAG-Process
   const index = await VectorStoreIndex.fromDocuments([...documents]);
 
   const queryEngine = index.asQueryEngine({ responseSynthesizer });
@@ -71,6 +76,7 @@ export default RAG = async (llm, embedder, prompt: string) => {
     query,
   });
 
+  //* Cosmetics + Result
   clearInterval(twirlTimer);
   readline.clearLine(process.stdout, 0);
   function sleep(ms) {

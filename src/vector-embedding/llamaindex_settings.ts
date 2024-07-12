@@ -5,10 +5,10 @@ import {
   type TextQaPrompt,
 } from 'llamaindex';
 
-const settings = Settings;
-
-const model = 'llama3';
-const embeddingModel = 'nomic-embed-text';
+//! Under construction
+// const settings = Settings;
+// const model = 'llama3';
+// const embeddingModel = 'nomic-embed-text';
 
 // Define a custom prompt
 export const newTextQaPrompt: TextQaPrompt = ({ context, query }) => {
@@ -21,7 +21,3 @@ Answer the query in german language.
 Query: ${query}
 Answer:`;
 };
-
-const setSettings = () => {};
-
-export default setSettings();

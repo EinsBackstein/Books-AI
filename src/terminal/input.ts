@@ -7,19 +7,20 @@ import seperator from 'inquirer';
 import fs from 'fs';
 import { models } from '../constants/models.ts';
 
+//user input for llm-usecase | llm-model & "message"
 const userInput = async () => {
   await inquirer
     .prompt([
       {
         name: 'model_type',
         type: 'select',
-        message: chalk.blue('Please select the model type'),
+        message: chalk.blue('Bitte Sprachmodell auswählen:'),
         choices: models,
       },
       {
         name: 'user_input',
         type: 'input',
-        message: chalk.cyan('Please enter your message'),
+        message: chalk.cyan('Bitte Prompt eingeben:'),
       },
     ])
     .then((answers) => {

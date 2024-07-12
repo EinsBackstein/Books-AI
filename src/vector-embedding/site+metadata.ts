@@ -30,11 +30,6 @@ async function callReader(docNum) {
   return arr;
 }
 
-// await callReader();
-
-// const data = await callReader(3);
-// console.log(data);
-
 async function exportAll() {
   const promiseArray = [];
   for (let i = 0; i < docs.length; i++) {

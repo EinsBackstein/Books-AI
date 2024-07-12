@@ -7,7 +7,7 @@ import seperator from 'inquirer';
 import fs from 'fs';
 import { models } from '../constants/models.ts';
 
-
+//user input for rag-usecase | rag-llm-model, rag-embedder & "message"
 const userInput__ = async () => {
   await inquirer
     .prompt([
@@ -26,7 +26,7 @@ const userInput__ = async () => {
             value: 2,
             disabled: false,
           },
-        ]
+        ],
       },
       {
         name: 'embedder_type',
@@ -37,7 +37,6 @@ const userInput__ = async () => {
             name: 'nomic-embed-text',
             value: 1,
             disabled: false,
-
           },
           {
             name: 'llama3',

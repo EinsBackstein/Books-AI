@@ -12,29 +12,32 @@ import reader from '../vector-embedding/pdfReader.ts';
 import userInput__ from '../terminal/rag.ts';
 import RAG from '../vector-embedding/RAG-Call.ts';
 
-export const call = () => {
+//function for user-input-handling and llm-call
+export const callLLM = () => {
   userInput().then(() => {
     const input = JSON.parse(fs.readFileSync('json/input.json', 'utf8'));
-    // console.log(input);
     main(input.user_input, input.model_type);
   });
 };
 
+//function for user-input-handling and rag-call
 export const callRAG = () => {
   userInput__().then(() => {
     const input = JSON.parse(fs.readFileSync('json/RAG.json', 'utf8'));
-    // console.log(input);
     RAG(input.model_type, input.embedder_type, input.user_input);
   });
 };
 
+//"main menu" for CLI-Tool
 export const userInput_ = async () => {
   await inquirer
     .prompt([
       {
         name: 'usage_selection',
         type: 'select',
-        message: chalk.yellow('Bitte Verwendungszweck auswählen'),
+        message: chalk.yellow(
+          'Bitte Verwendungszweck des Programmes auswählen:'
+        ),
         choices: ['PDF-Reader', 'Embedding', 'LLM-Connection', 'RAG'],
       },
     ])
@@ -46,6 +49,7 @@ export const userInput_ = async () => {
     });
 };
 
+//function for reading pdf-files and outputting the content
 export const callReader = () => {
   reader().then(([docs, splitDocs]) => {
     docs.docs.forEach((doc) => {
@@ -54,6 +58,7 @@ export const callReader = () => {
   });
 };
 
+//function for checking the model-type and -host used in main() function
 export const checkModel = (model: number) => {
   const model_type = {
     remote: false,
@@ -65,7 +70,7 @@ export const checkModel = (model: number) => {
   }
 
   if (models.find((m) => m.value === model) === undefined) {
-    throw new Error('Model not found');
+    throw new Error('Model konnte nicht gefunden werden');
   }
 
   model_type.name = models.find((m) => m.value === model).name;

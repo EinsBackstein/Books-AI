@@ -1,5 +1,5 @@
 import { checkModel } from './lib/helpers.ts';
-import { local, cloud } from './openAI-API.ts';
+import { local, cloud } from './OpenAI-API.ts';
 
 //main query
 export default async function main(user_input: string, model_type: number) {

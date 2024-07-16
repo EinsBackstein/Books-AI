@@ -1,17 +1,33 @@
 import {
   CompactAndRefine,
+  IngestionPipeline,
   Ollama,
   OllamaEmbedding,
+  QuestionsAnsweredExtractor,
   ResponseSynthesizer,
   Settings,
+  TitleExtractor,
+  ChromaVectorStore,
+  VectorStoreQueryMode,
+  RetrieverQueryEngine,
+  VectorIndexRetriever,
+  storageContextFromDefaults,
+  serviceContextFromDefaults,
+  SimpleNodeParser,
 } from 'llamaindex';
-import { newTextQaPrompt } from './llamaindex_settings.ts';
+import { newRefinePrompt, newTextQaPrompt } from './llamaindex_settings.ts';
 import { Document, VectorStoreIndex } from 'llamaindex';
 import * as readline from 'node:readline';
-import dataset from './site+metadata.ts';
+import test from './site+metadata.ts';
 import chalk from 'chalk';
+import { text } from 'stream/consumers';
+import { setMaxListeners } from 'node:events';
+import fs from 'fs';
+setMaxListeners(Infinity)
 
 let RAG;
+
+
 
 export default RAG = async (llm: number, embedder:number, prompt: string) => {
   //* Settings
@@ -30,62 +46,104 @@ export default RAG = async (llm: number, embedder:number, prompt: string) => {
   }
 
   const ollama = new Ollama({
-    model: model,
+    model: "gemma2",
   });
   
   // Use Ollama LLM and Embed Model
   Settings.llm = ollama;
   Settings.embedModel = new OllamaEmbedding({ model: embedderModel });
+VectorStoreQueryMode.HYBRID
 
-
+  const chromaVS = new ChromaVectorStore({ collectionName: 'test',  });
   //* Cosmetic
-  const twirlTimer = (function () {
-    const P = ['\\', '|', '/', '-'];
-    let x = 0;
-    return setInterval(function () {
-      process.stdout.write(chalk.magentaBright('\r' + P[x++]));
-      x &= 3;
-    }, 250);
-  })();
+  // const twirlTimer = (function () {
+  //   const P = ['\\', '|', '/', '-'];
+  //   let x = 0;
+  //   return setInterval(function () {
+  //     process.stdout.write(chalk.magentaBright('\r' + P[x++]));
+  //     x &= 3;
+  //   }, 250);
+  // })();
 
   //* Custom Prompt
   const responseSynthesizer = new ResponseSynthesizer({
-    responseBuilder: new CompactAndRefine(undefined, newTextQaPrompt),
-  });
+    responseBuilder: new CompactAndRefine(undefined, newTextQaPrompt, undefined),
+  })
 
   //* Dataset creation
   const documents = [];
 
-  for (let i = 0; i < dataset.dataset.length; i++) {
+  for (let i = 0; i < test.test.length; i++) {
     documents.push(
       new Document({
-        text: dataset.dataset[i][0].text,
-        metadata: dataset.dataset[i][0].metadata,
+        text: test.test[i].pageContent,
+        metadata: test.test[i].metadata.pdf.info,
       })
     );
   }
 
-  //* RAG-Process
-  const index = await VectorStoreIndex.fromDocuments([...documents]);
-
-  const queryEngine = index.asQueryEngine({ responseSynthesizer });
-
-  const query = prompt;
-
-  const results = await queryEngine.query({
-    query,
+  const pipeline = new IngestionPipeline({
+    transformations: [
+      new TitleExtractor(),
+      new OllamaEmbedding({
+        model: "nomic-embed-text",
+      }),
+      
+      ],
+    documents: [...documents],
+    vectorStore: chromaVS,
+    disableCache: true,
   });
+
+  const nodes = await pipeline.run();
+
+  for (const node of nodes) {
+    console.log(node.embedding);
+  }
+  
+  const ctx = await serviceContextFromDefaults({chunkOverlap: 200, chunkSize: 2000, embedModel: embedderModel, llm: ollama, nodeParser: undefined });
+  //* RAG-Process
+  const index = await VectorStoreIndex.fromVectorStore(chromaVS);
+
+  new VectorIndexRetriever  ({
+    index: index,
+  })
+
+  // console.log(index);
+  // const retriever = index.asRetriever()
+  // const nodesWithScore = await retriever.retrieve({ query: "Wie hoch ist der Grundstückspreis in Wien Favoriten?", preFilters: });
+  // console.log(nodesWithScore);
+  const queryEngine = index.asQueryEngine({similarityTopK: 10});
+
+  queryEngine.updatePrompts({
+    "responseSynthesizer:textQATemplate": newTextQaPrompt,
+    "responseSynthesizer:refineTemplate": newTextQaPrompt,
+  });
+  // console.log(queryEngine.getPrompts());
+
+  const response = await queryEngine.query({ query: "Welche Ansprüche gegenüber Vermittlungsdiensteanbietern und Maßnahmen gegen Hass im Netz habe ich?"});
+  console.log(response.sourceNodes);
+  console.log(response.message.content);
+// response.message.content
+
+
+  // const query = prompt;
+
+  // const results = await queryEngine.query({
+  //   query,
+  // });
 
   //* Cosmetics + Result
-  clearInterval(twirlTimer);
-  readline.clearLine(process.stdout, 0);
-  function sleep(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
+  // clearInterval(twirlTimer);
+  // readline.clearLine(process.stdout, 0);
+  // function sleep(ms) {
+  //   return new Promise((resolve) => setTimeout(resolve, ms));
+  // }
 
-  sleep(99).then(() => {
-    console.log('');
-    console.log(chalk.green(results.toString()));
-    console.log('');
-  });
-};
+//   sleep(99).then(() => {
+//     console.log('');
+//     console.log(chalk.green(results.toString()));
+//     console.log('');
+//   });
+// };
+}

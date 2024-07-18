@@ -3,7 +3,6 @@ node_modules
 /dist/
 
 /json/
-/docs/
 /temp/
 
 .eslintrc

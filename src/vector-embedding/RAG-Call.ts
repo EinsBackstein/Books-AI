@@ -23,13 +23,10 @@ import chalk from 'chalk';
 import { text } from 'stream/consumers';
 import { setMaxListeners } from 'node:events';
 import fs from 'fs';
-setMaxListeners(Infinity)
 
 let RAG;
 
-
-
-export default RAG = async (llm: number, embedder:number, prompt: string) => {
+export default RAG = async (llm: number, embedder: number, prompt: string) => {
   //* Settings
   let model;
   if (llm === 1) {
@@ -46,29 +43,33 @@ export default RAG = async (llm: number, embedder:number, prompt: string) => {
   }
 
   const ollama = new Ollama({
-    model: "gemma2",
+    model: model,
   });
-  
+
   // Use Ollama LLM and Embed Model
   Settings.llm = ollama;
   Settings.embedModel = new OllamaEmbedding({ model: embedderModel });
-VectorStoreQueryMode.HYBRID
+  VectorStoreQueryMode.HYBRID;
 
-  const chromaVS = new ChromaVectorStore({ collectionName: 'test',  });
+  const chromaVS = new ChromaVectorStore({ collectionName: 'test' });
   //* Cosmetic
-  // const twirlTimer = (function () {
-  //   const P = ['\\', '|', '/', '-'];
-  //   let x = 0;
-  //   return setInterval(function () {
-  //     process.stdout.write(chalk.magentaBright('\r' + P[x++]));
-  //     x &= 3;
-  //   }, 250);
-  // })();
+  const twirlTimer = (function () {
+    const P = ['\\', '|', '/', '-'];
+    let x = 0;
+    return setInterval(function () {
+      process.stdout.write(chalk.magentaBright('\r' + P[x++]));
+      x &= 3;
+    }, 250);
+  })();
 
   //* Custom Prompt
-  const responseSynthesizer = new ResponseSynthesizer({
-    responseBuilder: new CompactAndRefine(undefined, newTextQaPrompt, undefined),
-  })
+  // const responseSynthesizer = new ResponseSynthesizer({
+  //   responseBuilder: new CompactAndRefine(
+  //     undefined,
+  //     newTextQaPrompt,
+  //     undefined
+  //   ),
+  // });
 
   //* Dataset creation
   const documents = [];
@@ -86,10 +87,9 @@ VectorStoreQueryMode.HYBRID
     transformations: [
       new TitleExtractor(),
       new OllamaEmbedding({
-        model: "nomic-embed-text",
+        model: 'nomic-embed-text',
       }),
-      
-      ],
+    ],
     documents: [...documents],
     vectorStore: chromaVS,
     disableCache: true,
@@ -97,53 +97,50 @@ VectorStoreQueryMode.HYBRID
 
   const nodes = await pipeline.run();
 
-  for (const node of nodes) {
-    console.log(node.embedding);
-  }
-  
-  const ctx = await serviceContextFromDefaults({chunkOverlap: 200, chunkSize: 2000, embedModel: embedderModel, llm: ollama, nodeParser: undefined });
+  // for (const node of nodes) {
+  //   console.log(node.embedding);
+  // }
+
+  // const ctx = await serviceContextFromDefaults({
+  //   chunkOverlap: 200,
+  //   chunkSize: 2000,
+  //   embedModel: embedderModel,
+  //   llm: ollama,
+  //   nodeParser: undefined,
+  // });
   //* RAG-Process
   const index = await VectorStoreIndex.fromVectorStore(chromaVS);
 
-  new VectorIndexRetriever  ({
-    index: index,
-  })
+  // new VectorIndexRetriever({
+  //   index: index,
+  // });
 
-  // console.log(index);
-  // const retriever = index.asRetriever()
-  // const nodesWithScore = await retriever.retrieve({ query: "Wie hoch ist der Grundstückspreis in Wien Favoriten?", preFilters: });
-  // console.log(nodesWithScore);
-  const queryEngine = index.asQueryEngine({similarityTopK: 10});
+  const queryEngine = index.asQueryEngine({ similarityTopK: 10 });
 
   queryEngine.updatePrompts({
-    "responseSynthesizer:textQATemplate": newTextQaPrompt,
-    "responseSynthesizer:refineTemplate": newTextQaPrompt,
+    'responseSynthesizer:textQATemplate': newTextQaPrompt,
+    'responseSynthesizer:refineTemplate': newTextQaPrompt,
   });
   // console.log(queryEngine.getPrompts());
 
-  const response = await queryEngine.query({ query: "Welche Ansprüche gegenüber Vermittlungsdiensteanbietern und Maßnahmen gegen Hass im Netz habe ich?"});
-  console.log(response.sourceNodes);
-  console.log(response.message.content);
-// response.message.content
+  //Welche Ansprüche gegenüber Vermittlungsdiensteanbietern und Maßnahmen gegen Hass im Netz habe ich?
+  //
 
-
-  // const query = prompt;
-
-  // const results = await queryEngine.query({
-  //   query,
-  // });
+  const response = await queryEngine.query({
+    query:prompt,
+  });
+  // console.log(response.sourceNodes);
 
   //* Cosmetics + Result
-  // clearInterval(twirlTimer);
-  // readline.clearLine(process.stdout, 0);
-  // function sleep(ms) {
-  //   return new Promise((resolve) => setTimeout(resolve, ms));
-  // }
-
-//   sleep(99).then(() => {
-//     console.log('');
-//     console.log(chalk.green(results.toString()));
-//     console.log('');
-//   });
-// };
-}
+  clearInterval(twirlTimer);
+  readline.clearLine(process.stdout, 0);
+  function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+  console.log();
+  sleep(99).then(() => {
+    console.log('');
+    console.log(chalk.green(response.message.content));
+    console.log('');
+  });
+};

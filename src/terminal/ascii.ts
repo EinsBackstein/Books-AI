@@ -13,7 +13,7 @@ const renderAscii = async () => {
 async function generateAsciiArt() {
   return new Promise((resolve, reject) => {
     figlet.text(
-      'FileSeach CLI',
+      'LLM - Tool',
       {
         font: 'slant',
       },

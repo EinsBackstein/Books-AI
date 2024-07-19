@@ -1,5 +1,6 @@
+import { stdin, stdout } from 'node:process';
 import { checkModel } from './lib/helpers.ts';
-import { local, cloud } from './OpenAI-API.ts';
+import { local, cloud } from './openAI-API.ts';
 
 //main query
 export default async function main(user_input: string, model_type: number) {
@@ -18,10 +19,11 @@ export default async function main(user_input: string, model_type: number) {
   });
 
   //llm response
-  let response = '';
+  // let response = '';
   for await (const chunk of stream) {
-    response += chunk.choices[0]?.delta?.content || '';
+    // response += chunk.choices[0]?.delta?.content || '';
+    process.stdout.write(chunk.choices[0]?.delta?.content || '');
   }
 
-  await console.log(response);
+  // await console.log(response);
 }

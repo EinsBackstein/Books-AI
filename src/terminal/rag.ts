@@ -50,7 +50,7 @@ const userInput__ = async () => {
         name: 'user_input',
         type: 'input',
         message: chalk.cyan('Please enter your message'),
-        default: 'Grundstückspreis in Feldkirchen in Kärnten?',
+        default: 'Wie hoch sind die Grundstückspreise in Wien Favoriten?',
       },
     ])
     .then((answers) => {

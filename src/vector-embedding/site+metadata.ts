@@ -3,6 +3,28 @@ import { RecursiveCharacterTextSplitter } from '@langchain/textsplitters';
 import fs from 'fs';
 import { DirectoryLoader } from 'langchain/document_loaders/fs/directory';
 
+async function test1() {
+  const directoryLoader = new DirectoryLoader('docs/', {
+    '.pdf': (path: string) => new PDFLoader(path),
+  });
+  const docs = await directoryLoader.load();
+  
+  const textSplitter = new RecursiveCharacterTextSplitter({
+    chunkSize: 2000,
+    chunkOverlap: 200,
+  });
+  
+  const test = await textSplitter.splitDocuments(docs);
+  // console.log(test[0].metadata.pdf);
+  return test;
+}
+const test = await test1();
+export default { test };
+
+
+
+
+
 // const docs = fs.readdirSync('docs/');
 
 // async function read(docNum) {
@@ -42,20 +64,4 @@ import { DirectoryLoader } from 'langchain/document_loaders/fs/directory';
 // }
 
 // const dataset = await exportAll();
-async function test1() {
-  const directoryLoader = new DirectoryLoader('docs/', {
-    '.pdf': (path: string) => new PDFLoader(path),
-  });
-  const docs = await directoryLoader.load();
-  
-  const textSplitter = new RecursiveCharacterTextSplitter({
-    chunkSize: 2000,
-    chunkOverlap: 200,
-  });
-  
-  const test = await textSplitter.splitDocuments(docs);
-  // console.log(test[0].metadata.pdf);
-  return test;
-}
-const test = await test1();
-export default { test };
+

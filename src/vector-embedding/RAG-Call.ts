@@ -1,28 +1,17 @@
 import {
-  CompactAndRefine,
   IngestionPipeline,
   Ollama,
   OllamaEmbedding,
-  QuestionsAnsweredExtractor,
-  ResponseSynthesizer,
   Settings,
   TitleExtractor,
   ChromaVectorStore,
   VectorStoreQueryMode,
-  RetrieverQueryEngine,
-  VectorIndexRetriever,
-  storageContextFromDefaults,
-  serviceContextFromDefaults,
-  SimpleNodeParser,
 } from 'llamaindex';
-import { newRefinePrompt, newTextQaPrompt } from './llamaindex_settings.ts';
+import { newTextQaPrompt } from './llamaindex_settings.ts';
 import { Document, VectorStoreIndex } from 'llamaindex';
 import * as readline from 'node:readline';
 import test from './site+metadata.ts';
 import chalk from 'chalk';
-import { text } from 'stream/consumers';
-import { setMaxListeners } from 'node:events';
-import fs from 'fs';
 
 let RAG;
 
@@ -123,7 +112,7 @@ export default RAG = async (llm: number, embedder: number, prompt: string) => {
   });
   // console.log(queryEngine.getPrompts());
 
-  //Welche Ansprüche gegenüber Vermittlungsdiensteanbietern und Maßnahmen gegen Hass im Netz habe ich?
+  //Welche Ansprüche gegenüber Vermittlungsdiensteanbietern und Maßnahmen gegen Hass im Netz gibt es?
   //
 
   const response = await queryEngine.query({

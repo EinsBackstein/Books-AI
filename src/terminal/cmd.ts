@@ -9,7 +9,7 @@ let userSelection;
 const run = async () => {
   await renderAscii();
   await userInput_().then(() => {
-    userSelection = JSON.parse(fs.readFileSync('json/selector.json', 'utf8'));
+    userSelection = JSON.parse(fs.readFileSync('temp/selector.json', 'utf8'));
   });
   if (userSelection.usage_selection === 'PDF-Reader') {
     await callReader();

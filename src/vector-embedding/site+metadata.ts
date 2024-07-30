@@ -4,7 +4,7 @@ import fs from 'fs';
 import { DirectoryLoader } from 'langchain/document_loaders/fs/directory';
 
 async function test1() {
-  const directoryLoader = new DirectoryLoader('docs/', {
+  const directoryLoader = new DirectoryLoader('pdfs/', {
     '.pdf': (path: string) => new PDFLoader(path),
   });
   const docs = await directoryLoader.load();
@@ -25,43 +25,42 @@ export default { test };
 
 
 
-// const docs = fs.readdirSync('docs/');
+const docs = fs.readdirSync('pdfs/');
 
-// async function read(docNum) {
-//   const loader = new PDFLoader('docs/' + docs[docNum], {
-//     splitPages: false,
-//   });
-//   const documents = await loader.load();
+async function read(docNum) {
+  const loader = new PDFLoader('pdfs/' + docs[docNum], {
+    splitPages: false,
+  });
+  const documents = await loader.load();
 
-//   const textSplitter = new RecursiveCharacterTextSplitter({
-//     chunkSize: 500,
-//     chunkOverlap: 200,
-//   });
-//   const splitDocs = await textSplitter.splitDocuments(documents);
+  const textSplitter = new RecursiveCharacterTextSplitter({
+    chunkSize: 512,
+  });
+  const splitDocs = await textSplitter.splitDocuments(documents);
 
-//   return [{ documents }, { splitDocs }];
-// }
+  return [{ documents }, { splitDocs }];
+}
 
-// async function callReader(docNum) {
-//   const arr = read(docNum).then(([documents, splitDocs]) => {
-//     const temp = [];
-//     documents.documents.forEach((doc) => {
-//       temp.push({ text: doc.pageContent, metadata: doc.metadata });
-//     });
-//     return temp;
-//   });
-//   return arr;
-// }
+async function callReader(docNum) {
+  const arr = read(docNum).then(([documents, splitDocs]) => {
+    const temp = [];
+    documents.documents.forEach((doc) => {
+      temp.push({ text: doc.pageContent, metadata: doc.metadata });
+    });
+    return temp;
+  });
+  return arr;
+}
 
-// async function exportAll() {
-//   const promiseArray = [];
-//   for (let i = 0; i < docs.length; i++) {
-//     const tmp = await callReader(i);
-//     promiseArray.push(tmp);
-//   }
-//   const result = await Promise.all(promiseArray);
-//   return result;
-// }
+async function exportAll() {
+  const promiseArray = [];
+  for (let i = 0; i < docs.length; i++) {
+    const tmp = await callReader(i);
+    promiseArray.push(tmp);
+  }
+  const result = await Promise.all(promiseArray);
+  return result;
+}
 
-// const dataset = await exportAll();
+export const dataset = await exportAll();
 

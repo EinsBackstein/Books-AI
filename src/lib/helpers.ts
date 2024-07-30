@@ -16,7 +16,7 @@ import RAG from '../vector-embedding/RAG-Call.ts';
 //function for user-input-handling and llm-call
 export const callLLM = () => {
   userInput().then(() => {
-    const input = JSON.parse(fs.readFileSync('json/input.json', 'utf8'));
+    const input = JSON.parse(fs.readFileSync('temp/input.json', 'utf8'));
     main(input.user_input, input.model_type);
   });
 };
@@ -24,7 +24,7 @@ export const callLLM = () => {
 //function for user-input-handling and rag-call
 export const callRAG = () => {
   userInput__().then(() => {
-    const input = JSON.parse(fs.readFileSync('json/RAG.json', 'utf8'));
+    const input = JSON.parse(fs.readFileSync('temp/RAG.json', 'utf8'));
     RAG(input.model_type, input.embedder_type, input.user_input);
   });
 };
@@ -44,7 +44,7 @@ export const userInput_ = async () => {
     ])
     .then((answers) => {
       const json = JSON.stringify(answers);
-      fs.writeFileSync('json/selector.json', JSON.stringify(answers), (err) => {
+      fs.writeFileSync('temp/selector.json', JSON.stringify(answers), (err) => {
         if (err) throw err;
       });
     });

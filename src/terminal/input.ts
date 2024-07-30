@@ -25,7 +25,7 @@ const userInput = async () => {
     ])
     .then((answers) => {
       const json = JSON.stringify(answers);
-      fs.writeFileSync('json/input.json', JSON.stringify(answers), (err) => {
+      fs.writeFileSync('temp/input.json', JSON.stringify(answers), (err) => {
         if (err) throw err;
       });
     });

@@ -4,7 +4,7 @@ import { RecursiveCharacterTextSplitter } from '@langchain/textsplitters';
 
 //function for reading all PDF files in a directory
 export default async function reader() {
-  const directoryLoader = new DirectoryLoader('docs/', {
+  const directoryLoader = new DirectoryLoader('pdfs/', {
     '.pdf': (path: string) => new PDFLoader(path),
   });
   const docs = await directoryLoader.load();

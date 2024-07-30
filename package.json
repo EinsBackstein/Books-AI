@@ -42,5 +42,8 @@
     "pdf-parse": "^1.1.1",
     "ts-stopwatch": "^0.0.4"
   },
-  "type": "module"
+  "type": "module",
+  "eslintConfig": {
+    "ignorePatterns": ["src/*", "!src/test.js"]
+  }
 }

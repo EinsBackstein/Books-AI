@@ -55,7 +55,7 @@ const userInput__ = async () => {
     ])
     .then((answers) => {
       const json = JSON.stringify(answers);
-      fs.writeFileSync('json/RAG.json', JSON.stringify(answers), (err) => {
+      fs.writeFileSync('temp/RAG.json', JSON.stringify(answers), (err) => {
         if (err) throw err;
       });
     });

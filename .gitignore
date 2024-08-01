@@ -2,12 +2,11 @@
 node_modules
 /dist/
 
-/json/
+
 /temp/
-/db-json-multi/
+
 /db-json-single/
 /etc/
-/pdfs/
 /docs/
 
 .eslintrc

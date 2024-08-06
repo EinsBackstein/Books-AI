@@ -32,9 +32,9 @@ export default RAG = async (llm: number, embedder: number, prompt: string) => {
     model = 'mixtral:8x7b';
   } else if (llm === 4) {
     model = 'command-r';
-  } else if (llm === 2){
+  } else if (llm === 2) {
     model = 'gemma2';
-  } else if (llm === 1){
+  } else if (llm === 1) {
     model = 'llama3-gradient';
   }
 
@@ -122,7 +122,7 @@ export default RAG = async (llm: number, embedder: number, prompt: string) => {
 
   // for (const node of nodes) {
   //   console.log(node.embedding);
-   // }
+  // }
 
   // const ctx = await serviceContextFromDefaults({
   //   chunkOverlap: 200,
@@ -143,16 +143,14 @@ export default RAG = async (llm: number, embedder: number, prompt: string) => {
 
   // console.log(await ret.retrieve({ query: prompt }));
 
-let retriever;
+  let retriever;
 
-if(llm===3||llm===1){
-retriever = index.asRetriever({ similarityTopK: 200 });
-}
-if(llm===4||llm===2){
-retriever = index.asRetriever({ similarityTopK: 8 });
-}
-
-
+  if (llm === 3 || llm === 1) {
+    retriever = index.asRetriever({ similarityTopK: 200 });
+  }
+  if (llm === 4 || llm === 2) {
+    retriever = index.asRetriever({ similarityTopK: 8 });
+  }
 
   // console.log('queryengine', timer.getTime());
   const queryEngine = index.asQueryEngine({
@@ -183,7 +181,6 @@ retriever = index.asRetriever({ similarityTopK: 8 });
     apiKey: process.env.OLLAMA_API_KEY,
   });
 
-
   const stream = await openai.chat.completions.create({
     model: model,
 
@@ -191,15 +188,15 @@ retriever = index.asRetriever({ similarityTopK: 8 });
       {
         role: 'user',
         content: `
-        Context information is below.
-        ---------------------
-        ${contextArray}
-        ---------------------
-        Given the context information and not prior knowledge, answer the query. Do not use any external sources. Only use relevant information from the context above.
-        Always answer the query in german language!
-        Du bist tätig in einem Unternehmen, welches mit Immobilien handelt. Du musst dich gut mit verschiedenen Rechtsgrundlagen auskennen. Dir werden manchmal Daten in der Form von Tabellen und Listen zur verf>
-        Query: ${prompt}
-        Answer:`,
+          Context information is below.
+          ---------------------
+          ${contextArray}
+          ---------------------
+          Given the context information and not prior knowledge, answer the query. Do not use any external sources. Only use relevant information from the context above.
+          Always answer the query in german language!
+          Du bist tätig in einem Unternehmen, welches mit Immobilien handelt. Du musst dich gut mit verschiedenen Rechtsgrundlagen auskennen. Dir werden manchmal Daten in der Form von Tabellen und Listen zur verf>
+          Query: ${prompt}
+          Answer:`,
       },
     ],
     stream: true,

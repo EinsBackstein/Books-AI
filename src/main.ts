@@ -13,7 +13,7 @@ export default async function main(user_input: string, model_type: number) {
   // main query to the llm
   const stream = await openai.chat.completions.create({
     model: model.name,
-    
+
     messages: [{ role: 'user', content: user_input, }],
     stream: true,
   });

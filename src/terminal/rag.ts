@@ -26,8 +26,19 @@ const userInput__ = async () => {
             value: 2,
             disabled: false,
           },
+          {
+            name: 'mixtral:8x7b',
+            value: 3,
+            disabled: false,
+          },
+          {
+            name: 'command-r',
+            value: 4,
+            disabled: false,
+          },
         ],
       },
+
       {
         name: 'embedder_type',
         type: 'select',
@@ -62,3 +73,5 @@ const userInput__ = async () => {
 };
 
 export default userInput__;
+
+

@@ -8,7 +8,7 @@
     "dev": "npx tsx src/index.ts",
     "lint": "eslint . --ext .ts",
     "start": "npx tsx src/index.ts",
-    "build": "tsc"
+    "build": "npx tsx db/newMultiDB.ts"
   },
   "keywords": [],
   "author": "",
@@ -47,3 +47,4 @@
     "ignorePatterns": ["src/*", "!src/test.js"]
   }
 }
+

@@ -85,3 +85,7 @@ Future improvements & planned new features:
 - Automated Selector Updater (new models get automatically added to a list)
 - Change of the RAG user-input (currently outdated)
 - Specific predefined prompts for each model
+
+### Documentation
+
+[You can find the documentation of this project here.](https://einsbackstein.github.io/work/)

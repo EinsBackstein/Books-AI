@@ -57,7 +57,7 @@ The function for this is called in `lib/helper.ts`, which outputs this:
 
 This input gets saved to .json in `json/selector.json`
 
-```json
+```js
 { "usage_selection": 3 }
 //1 - PDF-Reader, 2 - Embedding (show only), 3 - RAG, 4 - normal LLM use
 ```
@@ -85,7 +85,7 @@ If the user chooses the 3rd option, he has chosen to use the Retrieval Augmented
 
 The process is handled in `terminal/rag.ts` and the parameters are then saved to .json in `json/RAG.json`
 
-```json
+```js
 {
   "model_type": 1,
   // 1 - llama3, 2 - gemma2, 3 - mixtral:8x7b, 4 - command-r
@@ -118,7 +118,7 @@ Similar to the extra RAG-inputs, the user also has to choose the model, which he
 
 The process is handled in `terminal/input.ts` and the parameters are then saved to .json in `json/input.json`
 
-```json
+```js
 {
   "model_type": 100,
   // 1 - llama3, 2 - gemma2, 100 - gpt-4o, 101 - gpt-3.5-turbo

@@ -2,6 +2,8 @@
 
 ## `npm build`
 
+## Startpoint: db/newMultiDB.ts
+
 With `npm build` a new database can be created. For this, `db/newMultiDB.ts` is called.
 
 It uses chromaDB to create a new vector-store from the .json-documents stored in db-json-multi.

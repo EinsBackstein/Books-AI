@@ -2,6 +2,8 @@
 
 ## `npm generate`
 
+## Startpoint: db/embedderMultiVector.ts
+
 You only need to use `npm generate` if there is no `db-json-multi/`-folder or if the folder is empty. It will generate the embeddings for all the PDFs
 in `pdfs/`.
 

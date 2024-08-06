@@ -61,7 +61,7 @@ const userInput__ = async () => {
         name: 'user_input',
         type: 'input',
         message: chalk.cyan('Please enter your message'),
-        default: 'Wie hoch sind die Grundstückspreise in Wien Favoriten?',
+        default: '',
       },
     ])
     .then((answers) => {

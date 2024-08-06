@@ -1,6 +1,6 @@
 {
   "name": "ollama-ai",
-  "version": "1.0.0",
+  "version": "beta 1.2.6",
   "description": "",
   "main": "index.js",
   "scripts": {

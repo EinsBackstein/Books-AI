@@ -39,12 +39,17 @@ export const userInput_ = async () => {
         message: chalk.yellow(
           'Bitte Verwendungszweck des Programmes auswählen:'
         ),
-        choices: ['PDF-Reader', 'Embedding', 'LLM-Connection', 'RAG'],
+        choices: [
+          { name: 'Reader --- for testing only', value: 1, disabled: true },
+          { name: 'Embedding --- for testing only', value: 2, disabled: true },
+          { name: 'Fragen zu Sprengnetter Books', value: 3 },
+          { name: 'Allgemeine Fragen', value: 4 },
+        ],
       },
     ])
     .then((answers) => {
       const json = JSON.stringify(answers);
-      fs.writeFileSync('temp/selector.json', JSON.stringify(answers), (err) => {
+      fs.writeFileSync('json/selector.json', JSON.stringify(answers), (err) => {
         if (err) throw err;
       });
     });

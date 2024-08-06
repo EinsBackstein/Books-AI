@@ -13,9 +13,9 @@ const renderAscii = async () => {
 async function generateAsciiArt() {
   return new Promise((resolve, reject) => {
     figlet.text(
-      'LLM - Tool',
+      'Books AI',
       {
-        font: 'slant',
+        font: 'kban',
       },
       function (err, data) {
         if (err) {

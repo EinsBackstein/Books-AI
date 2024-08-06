@@ -88,4 +88,4 @@ Future improvements & planned new features:
 
 ### Documentation
 
-[You can find the documentation of this project here.](https://einsbackstein.github.io/work/)
+[You can find the documentation of this project here.](https://einsbackstein.github.io/Books-AI/)

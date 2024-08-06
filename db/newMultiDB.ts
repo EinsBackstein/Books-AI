@@ -1,44 +1,32 @@
 import { ChromaClient } from 'chromadb';
-import { ChromaVectorStore, Document, Settings, Ollama, OllamaEmbedding } from 'llamaindex';
+import {
+  ChromaVectorStore,
+  Document,
+  Settings,
+  Ollama,
+  OllamaEmbedding,
+} from 'llamaindex';
 import fs from 'fs';
 
 const client = new ChromaClient({});
 const collectionName = 'test-small-nodes-all';
 // client.deleteCollection({ name: collectionName });
 
-
 //only on server
 
+const model = 'llama3';
+const embedderModel = 'nomic-embed-text';
 
-
-const model="llama3";
-const embedderModel="nomic-embed-text";
-
-
-  const ollama = new Ollama({
+const ollama = new Ollama({
+  model: model,
+  config: {
     model: model,
-    config: {
-      model: model,
-    },
-  });
+  },
+});
 
-  // Use Ollama LLM and Embed Model
-  Settings.llm = ollama;
-  Settings.embedModel = new OllamaEmbedding({ model: embedderModel });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Use Ollama LLM and Embed Model
+Settings.llm = ollama;
+Settings.embedModel = new OllamaEmbedding({ model: embedderModel });
 
 const db = new ChromaVectorStore({ collectionName: collectionName });
 

@@ -1,18 +1,19 @@
 {
-  "name": "ollama-ai",
+  "name": "Books AI",
   "version": "beta 1.2.6",
-  "description": "",
+  "description": "For a detailed description, refer to the README.md or the documentation.md",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npx tsx src/index.ts",
     "lint": "eslint . --ext .ts",
     "start": "npx tsx src/index.ts",
-    "build": "npx tsx db/newMultiDB.ts"
+    "build": "npx tsx db/newMultiDB.ts",
+    "generate": "npx tsx db/embedderMultiVector.ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["Sprengnetter", "Books", "Sprengnetter Books", "AI", "LLM", "RAG", "OLLAMA", "llamaindex", "chromaDB", "TypeScript"],
+  "author": "Julian Nott",
+  "license": "",
   "devDependencies": {
     "@types/node": "^20.14.10",
     "@types/node-fetch": "^2.6.11",

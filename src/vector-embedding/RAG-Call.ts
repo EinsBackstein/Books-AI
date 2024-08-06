@@ -145,10 +145,10 @@ export default RAG = async (llm: number, embedder: number, prompt: string) => {
 
   let retriever;
 
-  if (llm === 3 || llm === 1) {
+  if (llm === 1 || llm === 3 || llm === 4) {
     retriever = index.asRetriever({ similarityTopK: 200 });
   }
-  if (llm === 4 || llm === 2) {
+  if (llm === 2) {
     retriever = index.asRetriever({ similarityTopK: 8 });
   }
 

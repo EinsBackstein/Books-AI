@@ -12,6 +12,7 @@ Currently still in beta
 - Written in Typescript (fully type-safe)
 - Focused on efficiency and minimized waiting time
 - Big selection between LLMs
+- Integrated PDF-Reader & Embedding
 
 ## Installation
 
@@ -81,3 +82,6 @@ Future improvements & planned new features:
 - Expanded knowledge base
   - Sub-DBs
   - Single-File-DBs
+- Automated Selector Updater (new models get automatically added to a list)
+- Change of the RAG user-input (currently outdated)
+- Specific predefined prompts for each model

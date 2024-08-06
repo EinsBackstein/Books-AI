@@ -20,7 +20,7 @@ const run = async () => {
     await embedding();
   } else if (userSelection.usage_selection === 3) {
     await callRAG();
-  } else {
+  } else if (userSelection.usage_selection === 4){
     await callLLM();
   }
 };

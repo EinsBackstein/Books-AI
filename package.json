@@ -11,7 +11,7 @@
     "build": "npx tsx db/newMultiDB.ts",
     "generate": "npx tsx db/embedderMultiVector.ts"
   },
-  "keywords": ["Sprengnetter", "Books", "Sprengnetter Books", "AI", "LLM", "RAG", "OLLAMA", "llamaindex", "chromaDB", "TypeScript"],
+  "keywords": ["Sprengnetter", "Books", "Sprengnetter Books", "AI", "LLM", "RAG", "OLLAMA", "llamaindex", "chromaDB", "TypeScript", "Books AI"],
   "author": "Julian Nott",
   "license": "",
   "devDependencies": {
